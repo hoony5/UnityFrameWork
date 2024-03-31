@@ -95,6 +95,22 @@ namespace Share
         {
             return enumerable == null || !enumerable.Any();
         }
+
+        public static void AddOrUpdate<TKey, TSubKey, TSubValue>(this IDictionary<TKey, Dictionary<TSubKey, TSubValue>> dictionary, TKey key,
+            TSubKey subKey, TSubValue subValue)
+        {
+            if (dictionary.ContainsKey(key))
+                dictionary[key].AddOrUpdate(subKey, subValue);
+            else
+                dictionary.Add(key, new Dictionary<TSubKey, TSubValue> {{subKey, subValue}});
+        }
+        public static void AddOrUpdate<TKey, TValue>(this IDictionary<TKey, List<TValue>> dictionary, TKey key, TValue value)
+        {
+            if (dictionary.ContainsKey(key))
+                dictionary[key].Add(value);
+            else
+                dictionary.Add(key, new List<TValue> {value});
+        }
         public static void AddOrUpdate<TKey, TValue>(this IDictionary<TKey, TValue> dictionary, TKey key, TValue value)
         {
             if (dictionary.ContainsKey(key))

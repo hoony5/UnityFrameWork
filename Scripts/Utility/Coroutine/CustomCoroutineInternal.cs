@@ -1,28 +1,19 @@
 ﻿using System.Collections;
 using System.Runtime.InteropServices;
 
-[StructLayout(LayoutKind.Sequential)]
-public struct CustomCoroutineInternal
+public class CustomCoroutineInternal
 {
     public int index;
+    public string tag;
     public IEnumerator routine;
     public CustomCoroutineToken token;
-    public bool isNested;
 
-    public CustomCoroutineInternal(int index, IEnumerator routine, CustomCoroutineToken token, bool isNested)
+    public CustomCoroutineInternal(int index, string tag, IEnumerator routine, CustomCoroutineToken token)
     {
         this.index = index;
+        this.tag = tag;
         this.routine = routine;
         this.token = token;
-        this.isNested = isNested;
-    }
-    public CustomCoroutineInternal Init(int index, IEnumerator routine, CustomCoroutineToken token, bool isNested)
-    {
-        this.index = index;
-        this.routine = routine;
-        this.token = token;
-        this.isNested = isNested;
-        return this;
     }
 
     public CustomCoroutineToken OnStart() => token.OnStart();

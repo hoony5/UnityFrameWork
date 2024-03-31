@@ -2,7 +2,7 @@
 using UnityEngine;
 #if UNITY_EDITOR
 using UnityEditor;
-using NaughtyAttributes;
+using Sirenix.OdinInspector;
 #endif
 
 [Serializable, CreateAssetMenu (fileName = "newSOCreator", menuName = "ScriptableObject/Model/Repository/SOCreator")]
